@@ -16,11 +16,7 @@ class User extends Model implements AuthenticatableContract,
 {
     use Authenticatable, Authorizable, CanResetPassword;
 
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
+
     protected $table = 'users';
 
     /**
@@ -30,10 +26,14 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $fillable = ['name', 'email', 'password'];
 
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
+
     protected $hidden = ['password', 'remember_token'];
+
+    public function groceryLists(){
+	    $this->hasMany('App\GroceryList');
+    }
+
+	public function recentLists(){
+		$this->hasOne('App\RecentList');
+	}
 }

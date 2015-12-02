@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRecentListItemsTable extends Migration
+class CreateItemInfosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,10 @@ class CreateRecentListItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('recent_list_items', function (Blueprint $table) {
+        Schema::create('item_infos', function (Blueprint $table) {
             $table->increments('id');
+            $table->string("name");
+            //probably need metric in here as a FK
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ class CreateRecentListItemsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('recent_list_items');
+        Schema::drop('item_infos');
     }
 }

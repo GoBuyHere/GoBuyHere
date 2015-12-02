@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRecentListsTable extends Migration
+class CreateStoreTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,9 @@ class CreateRecentListsTable extends Migration
      */
     public function up()
     {
-        Schema::create('recent_lists', function (Blueprint $table) {
+        Schema::create('store_types', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('type');
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ class CreateRecentListsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('recent_lists');
+        Schema::drop('store_types');
     }
 }
