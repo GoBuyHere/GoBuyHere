@@ -15,7 +15,13 @@ class User extends Model implements AuthenticatableContract,
                                     CanResetPasswordContract
 {
     use Authenticatable, Authorizable, CanResetPassword;
-
+	/* Has Fields:
+	 * name
+	 * email
+	 * password
+	 * remembertoken
+	 *
+	 */
 
     protected $table = 'users';
 

@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class RecentList extends Model
 {
-
+	/* Has Fields:
+	 * store_id (FK)
+	 * user_id (FK)
+	 *
+	 */
 	protected $table = 'recent_lists';
 	protected $guarded = ['id'];
 
