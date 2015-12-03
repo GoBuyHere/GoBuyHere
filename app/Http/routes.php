@@ -12,3 +12,5 @@
 */
 
 Route::get('/', 'HomeController@showUsers');
+
+Route::get('/items', 'HomeController@showItems');

@@ -9,6 +9,8 @@ class GroceryListItem extends Model
 	/* Has Fields:
 	 * grocery_list_id (FK)
 	 * item_info_id (FK)
+	 * qty
+	 * active - boolean
 	 *
 	 */
 	protected $table = 'grocery_list_items';
