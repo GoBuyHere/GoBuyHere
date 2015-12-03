@@ -12,7 +12,7 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->truncate();
+
         //Few Test Users can be easily seeded, where $password => 'password'
         User::create(array('name' => 'Jesse Parker',
             'email' => 'jparker1@crimson.ua.edu',

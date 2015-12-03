@@ -17,6 +17,7 @@ class Item extends Model
 	protected $table = 'items';
 	protected $fillable = [];
 
+
 	public function itemInfo(){
 		return $this->belongsTo('App\ItemInfo');
 	}

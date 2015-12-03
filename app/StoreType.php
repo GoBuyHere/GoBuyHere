@@ -13,7 +13,7 @@ class StoreType extends Model
 	protected $table = 'store_types';
 	protected $fillable = [];
 
-	public function store(){
+	public function stores(){
 		return $this->hasMany('App\Store');
 	}
 }
