@@ -36,10 +36,10 @@ class User extends Model implements AuthenticatableContract,
     protected $hidden = ['password', 'remember_token'];
 
     public function groceryLists(){
-	    $this->hasMany('App\GroceryList');
+	    return $this->hasMany('App\GroceryList');
     }
 
 	public function recentLists(){
-		$this->hasOne('App\RecentList');
+		return $this->hasOne('App\RecentList');
 	}
 }

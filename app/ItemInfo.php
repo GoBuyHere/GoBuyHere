@@ -14,10 +14,10 @@ class ItemInfo extends Model
 	protected $fillable = [];
 
 	public function items(){
-		$this->hasMany('App\Item');
+		return $this->hasMany('App\Item');
 	}
 
 	public function groceryListItems(){
-		$this->hasMany('App\GroceryListItem');
+		return $this->hasMany('App\GroceryListItem');
 	}
 }

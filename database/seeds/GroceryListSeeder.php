@@ -19,7 +19,9 @@ class GroceryListSeeder extends Seeder
 	    $list = new GroceryList(['name' => "My Shopping List"]);
         //connect list with use
 	    $list->user()->associate($user);
+		//$user->save();
 	    $list->save();
+	    //$user->groceryLists()->save($list);
 
 	    $itemInfos = App\ItemInfo::all();
 	    //create grocery list items associated with $list

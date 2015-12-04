@@ -8,23 +8,10 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Item;
+use App\GroceryList;
 
-class HomeController extends Controller
+class GroceryListController extends Controller
 {
-
-    public function showUsers(){
-        return view('home', ['users' => User::all()]);
-    }
-
-
-	public function showItems(){
-		return view('items',['items' => Item::all()]);
-	}
-
-
-	
-
-
     /**
      * Display a listing of the resource.
      *
@@ -32,7 +19,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //
+	    $user = User::find(1);
+	    $list = $user->groceryLists->first();
+	    $items = $list->groceryListItems;
+
+	    //$groceryList = $groceryLists(0);
+        return view('grocery_list', ['user' => $user,'list' => $list, 'items' => $items]);
     }
 
     /**

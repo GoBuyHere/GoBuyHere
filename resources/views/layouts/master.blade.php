@@ -15,6 +15,7 @@
                 height: auto;
             }
         </style>
+        @yield('styles')
     </head>
 
     <body>
@@ -38,11 +39,11 @@
                            <li class="{{ (Request::is('/') ? 'active' : '') }}">
                                <a href="{{URL::to('/') }}"><i class="glyphicon glyphicon-home"></i> Home</a>
                            </li>
-                           <li class="{{ (Request::is('/shopping') ? 'active' : '') }}">
-                               <a href="{{URL::to('/shopping') }}"><i class="glyphicon glyphicon-list"></i> My Shopping List </a>
+                           <li class="{{ (Request::is('shopping') ? 'active' : '') }}">
+                               <a href="{{URL::to('shopping') }}"><i class="glyphicon glyphicon-list"></i> My Shopping List </a>
                            </li>
-                           <li class="{{ (Request::is('/items') ? 'active' : '') }}">
-                               <a href="{{ URL::to('/items') }}">Items</a></li>
+                           <li class="{{ (Request::is('items') ? 'active' : '') }}">
+                               <a href="{{ URL::to('items') }}">Items</a></li>
                            <li class="dropdown">
                            </li>
                        </ul>
@@ -55,9 +56,11 @@
                    </div>
                </div>
            </nav>
-            {!! HTML::image('resources/assets/images/free-logo.jpg')!!}
-            <div class="jumbotron">
 
+
+           <!--  {!! HTML::image('resources/assets/images/free-logo.jpg')!!}
+            <div class="jumbotron">
+            -->
 
 
             </div>

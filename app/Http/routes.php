@@ -14,3 +14,5 @@
 Route::get('/', 'HomeController@showUsers');
 
 Route::get('/items', 'HomeController@showItems');
+
+Route::get('/shopping', 'GroceryListController@index');
