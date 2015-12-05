@@ -45,7 +45,14 @@ class GroceryListController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $names = $request->input('name');
+	    $qtys = $request->input('qty');
+	    $actives = $request->input('active');
+        for($i=0;$i<count($names);$i++){
+	        if($names[$i] != "") {
+		        echo '<p>Item:' . $names[$i] . ' ||| qty:' . $qtys[$i] . ' ||| active: ' . ($actives[$i] ? "yes" : "no") . '</p>';
+	        }
+        }
     }
 
     /**

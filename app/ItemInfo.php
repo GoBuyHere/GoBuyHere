@@ -11,7 +11,7 @@ class ItemInfo extends Model
 	 *
 	 */
 	protected $table = 'item_infos';
-	protected $fillable = [];
+
 
 	public function items(){
 		return $this->hasMany('App\Item');

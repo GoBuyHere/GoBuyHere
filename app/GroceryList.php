@@ -12,7 +12,7 @@ class GroceryList extends Model
 	 *
 	 */
 	protected $table = 'grocery_lists';
-	protected $fillable = [];
+
 
 	public function user(){
 		return $this->belongsTo('App\User');
