@@ -31,7 +31,7 @@
                    <!-- Brand and toggle get grouped for better mobile display -->
                    <div class="navbar-header">
                        <a href="{{ URL::to('/') }}" class="pull-left">
-                           {!! HTML::image('/resources/assets/images/logo2.jpg','Go Buy Here',['class' => 'img-responsive visible-xs']) !!}
+                           {!! HTML::image('/resources/assets/images/Logo2.jpg','Go Buy Here',['class' => 'img-responsive visible-xs']) !!}
                        </a>
 
                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#my-navbar-collapse-1" aria-expanded="false">
@@ -75,7 +75,7 @@
 
 
             <a href="{{ URL::to('/') }}">
-                {!!  HTML::image('/resources/assets/images/logo2.jpg','Go Buy Here',['class' => 'img-responsive hidden-xs']) !!}
+                {!!  HTML::image('/resources/assets/images/Logo2.jpg','Go Buy Here',['class' => 'img-responsive hidden-xs']) !!}
             </a>
 
 
