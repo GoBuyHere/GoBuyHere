@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <!-- Bootstrap -->
         {!! HTML::style('resources/assets/css/bootstrap.min.css') !!}
         {!! HTML::style('resources/assets/css/custom.css') !!}
@@ -29,7 +30,10 @@
                <div class="container-fluid">
                    <!-- Brand and toggle get grouped for better mobile display -->
                    <div class="navbar-header">
-                       <a href="{{ URL::to('/') }}" class="pull-left"> <img class="img-responsive visible-xs" src="http://gobuyhere.app/resources/assets/images/logo2.jpg"></a>
+                       <a href="{{ URL::to('/') }}" class="pull-left">
+                           {!! HTML::image('/resources/assets/images/logo2.jpg','Go Buy Here',['class' => 'img-responsive visible-xs']) !!}
+                       </a>
+
                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#my-navbar-collapse-1" aria-expanded="false">
                            <span class="sr-only">Toggle navigation</span>
                            <span class="icon-bar"></span>
@@ -70,7 +74,9 @@
            </nav>
 
 
-            <a href="{{ URL::to('/') }}"> <img class="img-responsive hidden-xs" src="http://gobuyhere.app/resources/assets/images/logo2.jpg"></a>
+            <a href="{{ URL::to('/') }}">
+                {!!  HTML::image('/resources/assets/images/logo2.jpg','Go Buy Here',['class' => 'img-responsive hidden-xs']) !!}
+            </a>
 
 
 
