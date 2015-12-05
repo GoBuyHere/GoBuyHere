@@ -19,6 +19,9 @@ Route::get('items', 'HomeController@showItems');
 Route::get('shopping', 'GroceryListController@index');
 Route::post('shopping','GroceryListController@store');
 
+Route::get('comparison', ['as' => 'comp', 'uses' => 'ItemController@index']);
+Route::post('comparison','ItemController@store');
+
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');

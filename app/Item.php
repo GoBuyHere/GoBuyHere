@@ -15,7 +15,7 @@ class Item extends Model
 	 */
 
 	protected $table = 'items';
-	protected $fillable = [];
+	protected $guarded=[];
 
 
 	public function itemInfo(){
@@ -29,4 +29,6 @@ class Item extends Model
 	public function recentListItems(){
 		return $this->hasMany('App\RecentListItem');
 	}
+
+
 }

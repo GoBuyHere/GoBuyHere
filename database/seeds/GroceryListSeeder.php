@@ -25,8 +25,10 @@ class GroceryListSeeder extends Seeder
 
 	    $itemInfos = App\ItemInfo::all();
 	    //create grocery list items associated with $list
+	    $pos = 0;
 	    foreach($itemInfos as $itemInfo){
-		    $g = new GroceryListItem(['active' => true, 'qty' => 1]);
+		    $pos++;
+		    $g = new GroceryListItem(['active' => true, 'qty' => 1, 'position' => $pos]);
 		    $g->groceryList()->associate($list);
 		    $g->itemInfo()->associate($itemInfo);
 		    $g->save();

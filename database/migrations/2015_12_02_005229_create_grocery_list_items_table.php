@@ -15,6 +15,7 @@ class CreateGroceryListItemsTable extends Migration
         Schema::create('grocery_list_items', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('qty');
+            $table->integer('position');
 	        $table->boolean('active');
             $table->integer("grocery_list_id")->unsigned();
             $table->integer("item_info_id")->unsigned();

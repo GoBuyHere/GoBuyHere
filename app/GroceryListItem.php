@@ -10,6 +10,7 @@ class GroceryListItem extends Model
 	 * grocery_list_id (FK)
 	 * item_info_id (FK)
 	 * qty
+	 * position
 	 * active - boolean
 	 *
 	 */

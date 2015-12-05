@@ -3,17 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\Http\Redirect;
-use App\Http\Controllers\Controller;
-use App\User;
-use App\ItemInfo;
 use Auth;
-use App\GroceryListItem;
-use DB;
+use App\Http\Requests;
+use App\Store;
+use Illuminate\Database\Eloquent\Collection;
+use App\Http\Controllers\Controller;
 
-class GroceryListController extends Controller
+class ItemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,10 +20,17 @@ class GroceryListController extends Controller
     {
 	    $user = Auth::user();
 	    $list = $user->groceryLists->first();
-	    $items = $list->groceryListItems()->orderBy('position')->get();
+	    $items = $list->getActiveItems();
 
-	    //$groceryList = $groceryLists(0);
-        return view('grocery_list', ['user' => $user,'list' => $list, 'items' => $items]);
+
+		//dd($items);
+	    $storeInfo = $list->getOrderedStores( $items );
+
+
+	    //dd($storeInfo);
+	    //$a = $store1->getPricedItems($filtered);
+
+        return view('compare_list',['user' => $user,'list' => $list, 'items' => $items ,'store' => $storeInfo]);
     }
 
     /**
@@ -48,21 +51,7 @@ class GroceryListController extends Controller
      */
     public function store(Request $request)
     {
-
-
-	    $user = Auth::user();
-		$list = $user->groceryLists()->where('name', '=',$request->input('groceryList'))->first();
-	    $items = $list->storeChanges($request);
-	    $button = $request->input('compare_button');
-		if(isset($button)){
-			return redirect()->route('comp');
-		}
-	    else{
-		    return view('grocery_list', ['user' => $user,'list' => $list, 'items' => $items]);
-	    }
-
-
-
+        //
     }
 
     /**
