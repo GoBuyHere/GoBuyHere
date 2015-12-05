@@ -14,8 +14,7 @@ class GroceryListItem extends Model
 	 *
 	 */
 	protected $table = 'grocery_list_items';
-	protected $fillable = [];
-
+	protected $guarded = [];
 	public function groceryList(){
 		return $this->belongsTo('App\GroceryList');
 	}

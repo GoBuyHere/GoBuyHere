@@ -42,4 +42,5 @@ class User extends Model implements AuthenticatableContract,
 	public function recentLists(){
 		return $this->hasOne('App\RecentList');
 	}
+
 }

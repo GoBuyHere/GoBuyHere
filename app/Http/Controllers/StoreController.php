@@ -6,26 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\User;
-use App\Item;
-use Auth;
 
-class HomeController extends Controller
+class StoreController extends Controller
 {
-
-    public function showUsers(){
-        return view('home', ['users' => User::all()]);
-    }
-
-
-	public function showItems(){
-		return view('items',['items' => Item::all()]);
-	}
-
-
-	
-
-
     /**
      * Display a listing of the resource.
      *

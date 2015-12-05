@@ -29,6 +29,7 @@
     <div class="row">
         <form method="POST" action="/shopping">
             {!! csrf_field() !!}
+            <input type="hidden" name="groceryList" value="{{$list->name}}" >
             <div class="table-responsive col-md-8 col-md-offset-2">
                 <table class="table ">
                     <caption> <h4>{{$list->name}}</h4> </caption>

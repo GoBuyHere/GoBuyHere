@@ -21,12 +21,14 @@ class Store extends Model
 		return $this->belongsTo('App\StoreType');
 	}
 
-	public function item(){
+	public function items(){
 		return $this->hasMany('App\Item');
 	}
 
 	public function recentLists(){
 		return $this->hasMany('App\RecentList');
 	}
+
+
 
 }

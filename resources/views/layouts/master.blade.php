@@ -132,7 +132,7 @@
                                     <li><span class="fa fa-check text-success"></span> Contribute to price tracking</li>
                                     <li><span class="fa fa-check text-success"></span> Be Awesome</li>
                                 </ul>
-                                <p><a href="/new-customer/" class="btn btn-info btn-block">Yes please, register now!</a></p>
+                                <p><a href="auth/register" class="btn btn-info btn-block">Yes please, register now!</a></p>
                             </div>
                         </div>
                     </div>

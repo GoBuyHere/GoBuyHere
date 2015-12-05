@@ -21,7 +21,6 @@ class CreateGroceryListItemsTable extends Migration
             $table->foreign('grocery_list_id')->references('id')->on('grocery_lists');
             $table->foreign('item_info_id')->references('id')->on('item_infos');
 
-
             $table->timestamps();
         });
     }
