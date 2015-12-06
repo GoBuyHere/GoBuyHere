@@ -22,6 +22,9 @@ Route::post('shopping','GroceryListController@store');
 Route::get('comparison', ['as' => 'comp', 'uses' => 'ItemController@index']);
 Route::post('comparison','ItemController@store');
 
+Route::get('stores', ['as' => 'stores', 'uses' =>'StoreController@index']);
+Route::post('stores', 'StoreController@store');
+
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');

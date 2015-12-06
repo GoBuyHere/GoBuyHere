@@ -36,8 +36,8 @@
                     <thead>
                         <tr>
                             <th class="col-xs-1 opt1"><input type="checkbox" id="master_checkbox"></th>
-                            <th class="col-xs-2 opt1">Qty</th>
-                            <th class="col-xs-9 opt1">Item</th>
+                            <th class="col-xs-1 opt1">Qty</th>
+                            <th class="col-xs-10 opt1">Item</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -47,9 +47,10 @@
                             <td class="opt1">
                                 <input class="check-hide" type="hidden" name="active[]" value="{{  $item->active ? '1' : '0'}}">
                                 <input class="slave_checkbox"  type="checkbox" {{  $item->active ? "" : 'checked=checked' }} ></td>
-                            <td><input name="qty[]" type="text" class="form-control" id="qty" value="{{$item->qty}}"></td>
+                            <td><input name="qty[]" type="text" class="form-control qty" id="qty" value="{{$item->qty}}"></td>
                             <td><input name="name[]" type="text" class="form-control" tabindex="1" id="item" placeholder="New Item" value="{{ $item->itemInfo->name }}"></td>
-                            <td><button type="button" class="btn btn-danger delete-button" name="item-delete-button">X</button></td>
+                            <td><button type="button" class="btn btn-danger delete-button" aria-label="Close"  name="item-delete-button">&times;</button></td>
+
 
                         </tr>
                     @endforeach
@@ -58,27 +59,18 @@
                                 <input class="check-hide" type="hidden" name="active[]" value="1">
                                 <input name="active[]" class="slave_checkbox"  type="checkbox" >
                             </td>
-                            <td><input name="qty[]" type="text" class="form-control" id="qty" value="1"></td>
+                            <td><input name="qty[]" type="text" class="form-control qty" id="qty" value="1"></td>
                             <td><input name="name[]" type="text" class="form-control" tabindex="1" id="bottom_item" placeholder="New Item" value=""></td>
+
+                        </tr>
+                        <tr class="no-border">
+
+                            <td class="col-xs-2" colspan="2"><button name="save_button" type="submit" class="btn btn-primary" name="items-save-button">Save List</button></td>
+                            <td class="col-xs-3"><button name="compare_button" type="submit" class="btn btn-success" name="items-save-button">Compare Prices!</button></td>
                         </tr>
                     </tbody>
 
                 </table>
-                <!--<div class="input_fields_wrap">
-                    <button class="btn add_field_button">Add More Fields</button>
-                    <div><input type="text" name="mytext[]"></div>
-                </div> -->
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <button name="save_button" type="submit" class="btn btn-primary" name="items-save-button">Save List</button>
-                        </div>
-                        <div class="col-xs-6">
-                            <button name="compare_button" type="submit" class="btn btn-success" name="items-save-button">Compare Prices!</button>
-                        </div>
-                    </div>
-                </div>
-
 
             </div>
         </form>
@@ -103,10 +95,11 @@
 
                 if(x < max_fields){ //max input box allowed
                     x++; //text box increment
-                    $("#bottom_item").parent().parent().append('<td><button type="button" class="btn btn-danger delete-button" name="item-delete-button">X</button></td>');
-                    $("#bottom_item").attr("id","item");
+                    var bottom = $("#bottom_item")
+                    $(bottom).parent().parent().append('<td><button type="button" class="btn btn-danger delete-button" aria-label="Close" name="item-delete-button">&times</button></td>');
+                    $(bottom).attr("id","item");
                     $(".new_checkbox").attr("class","slave_checkbox");
-                    $("#my_tbody").append('<tr class="item_row">' +
+                    $(bottom).parent().parent().after('<tr class="item_row">' +
                             '<td class="opt1">' +
                             '<input class="check-hide" type="hidden" name="active[]" value="1">' +
                             '<input class="new_checkbox"  type="checkbox" >' +

@@ -23,12 +23,8 @@ class ItemController extends Controller
 	    $items = $list->getActiveItems();
 
 
-		//dd($items);
 	    $storeInfo = $list->getOrderedStores( $items );
 
-
-	    //dd($storeInfo);
-	    //$a = $store1->getPricedItems($filtered);
 
         return view('compare_list',['user' => $user,'list' => $list, 'items' => $items ,'store' => $storeInfo]);
     }

@@ -33,8 +33,14 @@ class Store extends Model
 		return $this->storeType->type;
 	}
 
+	public function users(){
+		return $this->belongsToMany('App\User');
+	}
+
+
+
 	public function formatCityStateZip(){
-		return $this->city . ', ' . $this->state . $this->zipcode;
+		return $this->city . ', ' . $this->state . ' ' . $this->zipcode;
 	}
 
 	public function getPricedItems($groceryItems){ //groceryListItems

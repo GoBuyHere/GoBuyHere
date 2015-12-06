@@ -87,8 +87,9 @@ class GroceryList extends Model
 //pass in filtered items
 		//$filtered = $this->getActiveItems();
 
-
-		$stores = Store::with('storeType')->get();
+		$user = $this->user;
+		$stores = $user->stores;
+		//$stores = Store::with('storeType')->get();
 		$storePrices = array();
 		foreach($stores as $store){
 			$storePrices[] = $store->getPricedItems($filtered);

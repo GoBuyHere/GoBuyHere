@@ -53,8 +53,8 @@
                            <li class="{{ (Request::is('shopping') ? 'active' : '') }}">
                                <a href="{{URL::to('shopping') }}"><i class="glyphicon glyphicon-list"></i> My Shopping List </a>
                            </li>
-                           <li class="{{ (Request::is('items') ? 'active' : '') }}">
-                               <a href="{{ URL::to('items') }}">Items</a></li>
+                           <li class="{{ (Request::is('stores') ? 'active' : '') }}">
+                               <a href="{{ URL::to('stores') }}">My Stores</a></li>
                            <li class="dropdown">
                            </li>
                        </ul>
@@ -82,6 +82,7 @@
 
             </div>
         </div>
+
 
 
 
@@ -151,7 +152,7 @@
         <!-- JQuery -->
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
+        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
         {!!    HTML::script('resources/assets/js/bootstrap.min.js') !!}
 
         @yield('scripts')

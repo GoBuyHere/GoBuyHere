@@ -12,3 +12,10 @@ tr.no-border{
     border:hidden;
 
 }
+
+.qty{
+    width:40px;
+
+    padding-left:6px;
+    padding-right:6px;
+}
