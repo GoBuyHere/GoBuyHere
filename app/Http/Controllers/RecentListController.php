@@ -9,6 +9,20 @@ use App\Http\Controllers\Controller;
 
 class RecentListController extends Controller
 {
+
+    public function saveList(Request $request){
+
+        dd($request);
+        $user = Auth::user();
+        $list = $user->groceryLists->first();
+        $items = $list->getActiveItems();
+
+
+        $storeInfo = $list->getOrderedStores( $items );
+
+
+        return view('recent',['user' => $user,'list' => $list, 'items' => $items ,'store' => $storeInfo]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +30,7 @@ class RecentListController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**

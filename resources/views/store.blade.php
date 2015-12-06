@@ -160,6 +160,30 @@
             $('#sortable2').append($(box));
         });
 
+        $( "#sortable1" ).on( "sortreceive", function( event, ui ) {
+            //console.log($(ui).children().children());
+            $(ui.item).children().children('p.text-left').each(function(){
+                //console.log(this);
+                $(this).replaceWith('<p class="text-right"><button type="button" class="btn btn-danger btn-xs rm-button">Remove</button></p>');
+            });
+        });
+        $( "#sortable2" ).on( "sortreceive", function( event, ui ) {
+            //console.log($(ui).children().children());
+            $(ui.item).children().children('p.text-right').each(function(){
+                //console.log(this);
+                $(this).replaceWith('<p class="text-left"><button type="button" class="btn btn-primary btn-xs add-button">Add</button></p>');
+            });
+        });
+
+
+        /* $("#sortable1").sortable({
+              receive: function(event, ui){
+                  $(ui).children('p.text-left').each(function(){
+                      console.log(ui);
+                      $(this).replaceWith('<p class="text-right"><button type="button" class="btn btn-danger btn-xs rm-button">Remove</button></p>');
+                  });
+              }
+          }); */
 
 
 
@@ -176,14 +200,17 @@
             console.log(3);
             var t_city = $('#filter_city').val().toLowerCase();
             console.log(4);
-            var t_zip = $('#filter_zipcode').val().toLowerCase();
+            console.log(t_zip);
+            var t_zip = $('#filter_zipcode').val().toString().toLowerCase();
+            console.log(t_zip);
 
             $('#sortable2').children('li').each(function () {
 
                 if ((($(this).data('type').indexOf(t_type)) > -1) &&
                         (($(this).data('address').indexOf(t_addr)) > -1) &&
                         (($(this).data('city').indexOf(t_city)) > -1) &&
-                        (($(this).data('state').indexOf(t_state)) > -1) ) {
+                        (($(this).data('state').indexOf(t_state)) > -1)  &&
+                        (($(this).data('zip').toString().indexOf(t_zip)) > -1)){
                     $(this).show();
                 }
                 else {

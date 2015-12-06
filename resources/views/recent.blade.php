@@ -31,7 +31,7 @@
 
 
     <div class="row">
-        <form method="POST" action="/recent_new">
+        <form method="POST" action="/recentList">
             {!! csrf_field() !!}
             <input type="hidden" name="groceryList" value="{{$list->name}}" >
             <div class="table-responsive">
@@ -42,18 +42,14 @@
 
                         <th class="col-xs-1">Qty</th>
                         <th class="col-xs-5">Item</th>
-                        <th class="col-xs-2 success">
-                            <p class="store">{{$store[0][3]->getStoreType()}}</p>
-                            <p class="store">{{$store[0][3]->address}}</p>
-                            <p class="store">{{$store[0][3]->formatCityStateZip()}}</p>
+                        <th class="col-xs-3">
+                            <p class="store">{{$store->getStoreType()}}</p>
+                            <p class="store">{{$store->address}}</p>
+                            <p class="store">{{$store->formatCityStateZip()}}</p>
                         </th>
-                        @for ($i= 1; $i < 3; $i++)
-                            <th class="col-xs-2">
-                                <p class="store">{{$store[$i][3]->getStoreType()}}</p>
-                                <p class="store">{{$store[$i][3]->address}}</p>
-                                <p class="store">{{$store[$i][3]->formatCityStateZip()}}</p>
-                            </th>
-                        @endfor
+                        <th class="col-xs-3">
+                            My Prices
+                        </th>
                     </tr>
                     </thead>
                     <tbody id="my_tbody">
@@ -62,10 +58,8 @@
 
                             <td>{{ $item->qty }}</td>
                             <td>{{ $item->itemInfo->name }}</td>
-                            <td class="success">{{ array_key_exists($item->item_info_id,$store[0][2]) ? '$' . $store[0][2][$item->item_info_id] : "No Price Found" }}</td>
-                            @for ($i= 1; $i < 3; $i++)
-                                <td>{{ array_key_exists($item->item_info_id,$store[$i][2]) ? '$' . $store[$i][2][$item->item_info_id] : "No Price Found" }}</td>
-                            @endfor
+                            <td class="store_price">{{ array_key_exists($item->item_info_id,$store[0][2]) ? '$' . $store[0][2][$item->item_info_id] : "No Price Found" }}</td>
+
 
                         </tr>
                     @endforeach
@@ -101,4 +95,3 @@
 
 
 @endsection
-

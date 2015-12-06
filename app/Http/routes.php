@@ -25,6 +25,10 @@ Route::post('comparison','ItemController@store');
 Route::get('stores', ['as' => 'stores', 'uses' =>'StoreController@index']);
 Route::post('stores', 'StoreController@store');
 
+Route::post('recent_new', ['as' => 'recent_new', 'uses' =>'RecentListController@saveList']);
+Route::get('recent', ['as' => 'recent', 'uses' =>'RecentListController@index']);
+Route::post('recent', 'RecentListController@store');
+
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
