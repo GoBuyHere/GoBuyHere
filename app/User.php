@@ -40,7 +40,7 @@ class User extends Model implements AuthenticatableContract,
 	    return $this->hasMany('App\GroceryList');
     }
 
-	public function recentLists(){
+	public function recentList(){
 		return $this->hasOne('App\RecentList');
 	}
 
@@ -91,6 +91,26 @@ class User extends Model implements AuthenticatableContract,
 		return $flag;
 
 
+	}
+
+	public function saveRecentList($flag, $storeId, $itemInfoIds, $qtys){
+
+		$recentList = RecentList::firstOrNew(['user_id' => $this->id]);
+		$recentList->store_id = $storeId;
+		$recentList->save(); // list is saved;
+		//delete old items
+		RecentListItem::where('recent_list_id',$recentList->id)->delete(); // delete old items
+		//add new items
+
+		foreach($itemInfoIds as $i => $infoId){
+			$item = Item::firstOrNew(['item_info_id' => $infoId, 'store_id' => $storeId]);
+			if(!isset($item->price)){
+				$item->price = 0;
+				$item->save();
+			}
+			//create recentItems;
+			RecentListItem::create(['item_id' => $item->id, 'recent_list_id' => $recentList->id, 'qty' => $qtys[$i]]);
+		}
 	}
 
 }

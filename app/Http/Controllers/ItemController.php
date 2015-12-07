@@ -24,9 +24,20 @@ class ItemController extends Controller
 
 
 	    $storeInfo = $list->getOrderedStores( $items );
+        //dd( array_slice($storeInfo,0,3));
 
 
-        return view('compare_list',['user' => $user,'list' => $list, 'items' => $items ,'store' => $storeInfo]);
+        //need to warn if no stores!!
+        if(empty($storeInfo)){
+	        return view('error',['message'=> 'Sorry, you need to add a store before you can compare prices.']);
+        }
+	    elseif($items->count() == 0){
+		    return view('error',['message' => 'Sorry, you need to add items to your shopping list.']);
+	    }
+	    else{
+		    return view('compare_list',['user' => $user,'list' => $list, 'items' => $items ,'store' => array_slice($storeInfo,0,3)]);
+	    }
+
     }
 
     /**

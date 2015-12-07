@@ -16,9 +16,10 @@ class GroceryListSeeder extends Seeder
     {   //find user
         $user = App\User::find(1);
         //make list
-	    $list = new GroceryList(['name' => "My Shopping List"]);
+	    $list = new GroceryList(['name' => "My Shopping List","current" => true]);
         //connect list with use
 	    $list->user()->associate($user);
+
 		//$user->save();
 	    $list->save();
 	    //$user->groceryLists()->save($list);

@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Redirect;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\ItemInfo;
 use Auth;
-use App\GroceryListItem;
+use App\GroceryList;
 use DB;
+use Illuminate\Support\Collection;
 
 class GroceryListController extends Controller
 {
@@ -22,12 +23,15 @@ class GroceryListController extends Controller
      */
     public function index()
     {
+	    if(!Auth::check()){
+		    return view('grocery_list', ['user' => 0, 'items' => new Collection()]);
+	    }
 	    $user = Auth::user();
-	    $list = $user->groceryLists->first();
+	    $list = GroceryList::firstOrCreate(['user_id' => $user->id]);
 	    $items = $list->groceryListItems()->orderBy('position')->get();
 
 	    //$groceryList = $groceryLists(0);
-        return view('grocery_list', ['user' => $user,'list' => $list, 'items' => $items]);
+        return view('grocery_list', ['user' => 1,'list' => $list, 'items' => $items]);
     }
 
     /**
@@ -50,16 +54,26 @@ class GroceryListController extends Controller
     {
 
 
+        $flag = 'good';
 	    $user = Auth::user();
-		$list = $user->groceryLists()->where('name', '=',$request->input('groceryList'))->first();
+		$list = Grocerylist::where('user_id', $user->id)->first();
 	    $items = $list->storeChanges($request);
+
 	    $button = $request->input('compare_button');
 		if(isset($button)){
 			return redirect()->route('comp');
 		}
 	    else{
-		    return view('grocery_list', ['user' => $user,'list' => $list, 'items' => $items]);
+            if(!empty($items) ){
+                return Redirect::route('shopping')->with('gmessage', ' Your items have been saved!');
+            }
+            else{
+                return Redirect::route('shopping')->with('bmessage', ' You removed all of your Items!');
+            }
+
 	    }
+
+
 
 
 

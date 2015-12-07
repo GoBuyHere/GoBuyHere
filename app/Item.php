@@ -30,5 +30,18 @@ class Item extends Model
 		return $this->hasMany('App\RecentListItem');
 	}
 
+	public function priceToReadable($qty = 1){
+		return '$' . strVal(number_format($this->price * $qty / 100,2));
+	}
+
+
+
+	public function hasPrice(){
+		if($this->price > 0 ){
+			return true;
+		}
+		return false;
+	}
+
 
 }

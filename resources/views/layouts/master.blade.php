@@ -47,14 +47,18 @@
                    <!-- Collect the nav links, forms, and other content for toggling -->
                    <div class="collapse navbar-collapse" id="my-navbar-collapse-1">
                        <ul class="nav navbar-nav">
+
+
                            <li class="{{ (Request::is('/') ? 'active' : '') }}">
-                               <a href="{{URL::to('/') }}"><i class="glyphicon glyphicon-home"></i> Home</a>
+                               <a href="{{URL::to('/') }}"><i class="glyphicon glyphicon-home"></i> My Shopping List </a>
                            </li>
-                           <li class="{{ (Request::is('shopping') ? 'active' : '') }}">
-                               <a href="{{URL::to('shopping') }}"><i class="glyphicon glyphicon-list"></i> My Shopping List </a>
-                           </li>
+                           @if(Auth::check())
                            <li class="{{ (Request::is('stores') ? 'active' : '') }}">
-                               <a href="{{ URL::to('stores') }}">My Stores</a></li>
+                               <a href="{{ URL::to('stores') }}"><i class="glyphicon glyphicon-shopping-cart"></i> My Stores</a></li>
+
+                           <li class="{{ (Request::is('recent') ? 'active' : '') }}">
+                               <a href="{{ URL::to('recent') }}"><i class="glyphicon glyphicon-list"></i> My Recent List</a></li>
+                           @endif
                            <li class="dropdown">
                            </li>
                        </ul>

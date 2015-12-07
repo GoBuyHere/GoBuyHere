@@ -11,13 +11,13 @@
 |
 */
 
-Route::get('/', 'HomeController@showUsers');
-Route::get('home', 'HomeController@showUsers');
+Route::get('/shopping', 'HomeController@showUsers');
+Route::get('home', 'HomeController@redirect');
 
 Route::get('items', 'HomeController@showItems');
 
-Route::get('shopping', 'GroceryListController@index');
-Route::post('shopping','GroceryListController@store');
+Route::get('/', ['as' => 'shopping', 'uses' =>'GroceryListController@index']);
+Route::post('/','GroceryListController@store');
 
 Route::get('comparison', ['as' => 'comp', 'uses' => 'ItemController@index']);
 Route::post('comparison','ItemController@store');
@@ -26,6 +26,7 @@ Route::get('stores', ['as' => 'stores', 'uses' =>'StoreController@index']);
 Route::post('stores', 'StoreController@store');
 
 Route::post('recent_new', ['as' => 'recent_new', 'uses' =>'RecentListController@saveList']);
+
 Route::get('recent', ['as' => 'recent', 'uses' =>'RecentListController@index']);
 Route::post('recent', 'RecentListController@store');
 

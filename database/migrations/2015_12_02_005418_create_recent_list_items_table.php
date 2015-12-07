@@ -15,6 +15,8 @@ class CreateRecentListItemsTable extends Migration
         Schema::create('recent_list_items', function (Blueprint $table) {
 	        $table->increments('id');
             $table->timestamps();
+            $table->integer('qty');
+
             $table->integer('item_id')->unsigned();
             $table->integer('recent_list_id')->unsigned();
             $table->foreign('recent_list_id')->references('id')->on('recent_lists');

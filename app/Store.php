@@ -49,7 +49,7 @@ class Store extends Model
 		$total = 0;
 		foreach($groceryItems as $gItem){
 			$item = $this->items()->where('item_info_id','=',$gItem->item_info_id)->first();
-			if($item != null){
+			if($item != null && $item->price != 0){
 				$price = $gItem->qty * $item->price;
 				$price = number_format($price / 100,2);
 				$missAndPrice[1] += $price;

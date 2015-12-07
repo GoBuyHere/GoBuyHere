@@ -11,10 +11,11 @@ class GroceryList extends Model
 	/* Has Fields:
 	 * user_id (FK)
 	 * name
+	 * current
 	 *
 	 */
 	protected $table = 'grocery_lists';
-
+	protected $guarded = [];
 
 	public function user(){
 		return $this->belongsTo('App\User');
@@ -36,7 +37,7 @@ class GroceryList extends Model
 		for($i=0;$i<count($names);$i++){
 			if($names[$i] != "") {
 				$pos++;
-				$itemInfo = ItemInfo::firstOrCreate(['name' => $names[$i]]);
+				$itemInfo = ItemInfo::firstOrCreate(['name' => ucwords($names[$i])]);
 				$newGroceryItem = $this->groceryListItems()->where('item_info_id','=',$itemInfo->id)->first();
 
 				if(isset($newGroceryItem) && (($key = $groceryListItems->search($newGroceryItem)) !==false )){

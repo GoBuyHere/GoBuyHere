@@ -31,54 +31,65 @@
 
 
     <div class="row">
-        <form method="POST" action="/recentList">
+        @if(Session::has('gmessage'))
+            <div class="alert alert-success alert-message"><strong>Nice! </strong> {{Session::get('gmessage')}} </div>
+        @elseif(Session::has('imessage'))
+            <div class="alert alert-info alert-message"><strong>Whoops! </strong> {{Session::get('imessage')}} </div>
+        @endif
+        <form method="POST" action="/recent">
             {!! csrf_field() !!}
-            <input type="hidden" name="groceryList" value="{{$list->name}}" >
-            <div class="table-responsive">
+            <input type="hidden" name="" value="" >
+            <div class="table-responsive col-md-8 col-md-offset-2">
                 <table class="table ">
-                    <caption> <h4>{{$list->name}}</h4> </caption>
+                    <h4> Your Recent List: </h4>
+                    <caption> <h4>{{$store->getStoreType()}}</h4><h4>{{$store->address}} </h4> <h4>{{$store->formatCityStateZip()}}</h4> </caption>
                     <thead>
                     <tr>
-
-                        <th class="col-xs-1">Qty</th>
-                        <th class="col-xs-5">Item</th>
-                        <th class="col-xs-3">
-                            <p class="store">{{$store->getStoreType()}}</p>
+                        <!-- <p class="store"{{$store->getStoreType()}}</p>
                             <p class="store">{{$store->address}}</p>
-                            <p class="store">{{$store->formatCityStateZip()}}</p>
-                        </th>
-                        <th class="col-xs-3">
-                            My Prices
-                        </th>
+                            <p class="store">{{$store->formatCityStateZip()}}</p> -->
+                        <th class="col-xs-1">Qty</th>
+                        <th class="col-xs-3">Item</th>
+
+                        <th class="col-xs-2">Price for one</th>
+                        <th class="col-xs-2">Price for Qty</th>
+                        <th class="col-xs-4">What you paid for one</th>
                     </tr>
                     </thead>
                     <tbody id="my_tbody">
-                    @foreach($items as $item)
+                    @foreach($recentListItems as $rItem)
                         <tr class="item_row">
+                            <input type="hidden" value="{{$rItem->item->id}}" name="itemIds[]">
+                            <td>{{ $rItem->qty }}</td>
+                            <td>{{ $rItem->item->itemInfo->name }}</td>
 
-                            <td>{{ $item->qty }}</td>
-                            <td>{{ $item->itemInfo->name }}</td>
-                            <td class="store_price">{{ array_key_exists($item->item_info_id,$store[0][2]) ? '$' . $store[0][2][$item->item_info_id] : "No Price Found" }}</td>
-
-
+                            <td class="store_price_for_one">{{ $rItem->item->hasPrice() ? $rItem->item->priceToReadable() : "No Price Found" }}</td>
+                            <td class="store_price_for_one">{{ $rItem->item->hasPrice() ? $rItem->item->priceToReadable($rItem->qty) : "No Price Found" }}</td>
+                            <td>
+                                <div class="form-inline">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">$</div>
+                                            <input type="text" class="form-control" id="exampleInputAmount" name="amount[]" placeholder="Amount">
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                     @endforeach
 
                     <tr class="item_row">
 
-                        <td colspan="2"> <strong class="pull-right"> Price Totals: </strong></td>
-                        <td class="success"><u><strong>{{ '$' . $store[0][1] }}</strong></u></td>
-                        @for ($i= 1; $i < 3; $i++)
-                            <td><strong>{{ '$' . $store[$i][1] }}</strong></td>
-                        @endfor
+                        <td colspan="3"> <strong class="pull-right"> Price Total: </strong></td>
+                        <td ><u><strong>{{ $total }}</strong></u></td>
+
+                            <td></td>
+
 
                     </tr>
                     <tr class="no-border">
-                        <td class="col-xs-1"></td>
-                        <td class="col-xs-5"></td>
-                        <td class="col-xs-2"><button name="choose_button-1" type="submit" class="btn btn-success">Choose Store</button></td>
-                        <td class="col-xs-2"><button name="choose_button-2" type="submit" class="btn btn-primary">Choose Store</button></td>
-                        <td class="col-xs-2"><button name="choose_button-3" type="submit" class="btn btn-primary">Choose Store</button></td>
+                        <td colspan=4 class="col-xs-8"></td>
+                        <td colspan="1" class="col-xs-4 "><button name="save_prices" type="submit" class="btn btn-primary">Save My Prices</button></td>
                     </tr>
                     </tbody>
 
@@ -94,4 +105,17 @@
 
 
 
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            window.setTimeout(function () {
+                $(".alert-message").fadeTo(500, 0).slideUp(500, function () {
+                    $(this).remove();
+                });
+            }, 3000);
+        });
+
+    </script>
 @endsection

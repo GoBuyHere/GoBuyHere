@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Item;
 use Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class HomeController extends Controller
 {
@@ -22,6 +23,10 @@ class HomeController extends Controller
 		return view('items',['items' => Item::all()]);
 	}
 
+
+    public function redirect(){
+        return Redirect::route('');
+    }
 
 	
 

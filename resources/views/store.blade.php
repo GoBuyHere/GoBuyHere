@@ -46,7 +46,11 @@
 @endsection
 
 @section('content')
-<div class="row">
+
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+
+    <div class="row">
 
     @if(Session::has('gmessage'))
         <div class="alert alert-success alert-message"><strong>Nice! </strong> {{Session::get('gmessage')}} </div>
@@ -55,7 +59,8 @@
     @elseif(Session::has('bmessage'))
         <div class="alert alert-danger alert-message"><strong>Oh No! </strong> {{Session::get('bmessage')}} </div>
     @endif
-    <div class="col-md-3 col-md-offset-1 col-xs-12">
+
+    <div class="col-md-4  col-xs-12">
         <h2 class="text-center">My Stores</h2>
         <form method="POST" action="stores" name="store_form">
         {!! csrf_field() !!}
@@ -81,7 +86,7 @@
         </form>
     </div>
 
-    <div class="col-md-3 col-xs-12">
+    <div class="col-md-4 col-xs-12">
         <h2 class="text-center">Available Stores</h2>
         <div class="well">
             <ul id="sortable2" class="connectedSortable">
@@ -103,7 +108,7 @@
 
         </div>
     </div>
-    <div class="col-md-3 col-xs-12">
+    <div class="col-md-4 col-xs-12">
         <h2 class="text-center">Filter Stores</h2>
         <div class="well">
             <div class="form-group">
@@ -132,6 +137,8 @@
     </div>
 
 </div>
+        </div>
+    </div>
 
 @endsection
 
@@ -227,71 +234,6 @@
 
         });
 
-        /*
-        $(document).on("input","#filter_address", function(){
-            var text = $(this).val().toLowerCase();
-            $('#sortable2').children('li').each(function(){
-                if( ($(this).data('address').indexOf(text)) > -1 ){
-                    $(this).show();
-                }
-                else{
-                    $(this).hide();
-                }
-            })
-        });
-        $(document).on("input","#filter_city", function(){
-            var text = $(this).val().toLowerCase();
-            $('#sortable2').children('li').each(function(){
-                if( ($(this).data('city').indexOf(text)) > -1 ){
-                    $(this).show();
-                }
-                else{
-                    $(this).hide();
-                }
-            })
-        });
-        $(document).on("input","#filter_state", function(){
-            var text = $(this).val().toLowerCase();
-            $('#sortable2').children('li').each(function(){
-                if( ($(this).data('state').indexOf(text)) > -1 ){
-                    $(this).show();
-                }
-                else{
-                    $(this).hide();
-                }
-            })
-        });
-        $(document).on("input","#filter_zipcode", function(){
-            var text = $(this).val().toLowerCase();
-            $('#sortable2').children('li').each(function(){
-                if( ($(this).data('zip').indexOf(text)) > -1 ){
-                    $(this).show();
-                }
-                else{
-                    $(this).hide();
-                }
-            })
-        });
-        */
-
-
-        /*
-         var value = $(this).val();
-         if($(this).data("lastval")!= value){
-         $(this).data("lastval",value);
-
-
-         clearTimeout(timerid);
-         timerid = setTimeout(function() {
-
-         //change action
-         $('#sortable2')
-
-         },500);
-
-         };
-
-         */
 
 
 

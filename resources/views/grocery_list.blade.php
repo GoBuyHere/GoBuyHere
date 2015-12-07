@@ -27,12 +27,18 @@
 
 
     <div class="row">
-        <form method="POST" action="/shopping" name="item_form">
+        @if(Session::has('gmessage'))
+            <div class="alert alert-success alert-message"><strong>Nice! </strong> {{Session::get('gmessage')}} </div>
+        @elseif(Session::has('bmessage'))
+            <div class="alert alert-danger alert-message"><strong>Oh No! </strong> {{Session::get('bmessage')}} </div>
+        @endif
+
+        <form method="POST" action="/" name="item_form" id="item_form">
             {!! csrf_field() !!}
-            <input type="hidden" name="groceryList" value="{{$list->name}}" >
+            <input type="hidden" name="groceryList" value="Shopping List" >
             <div class="table-responsive col-md-8 col-md-offset-2">
-                <table class="table ">
-                    <caption> <h4>{{$list->name}}</h4> </caption>
+                <table class="table">
+                    <caption> <h4>Shopping List</h4> </caption>
                     <thead>
                         <tr>
                             <th class="col-xs-1 opt1"><input type="checkbox" id="master_checkbox"></th>
@@ -65,8 +71,14 @@
                         </tr>
                         <tr class="no-border">
 
-                            <td class="col-xs-2" colspan="2"><button name="save_button" type="submit" class="btn btn-primary" name="items-save-button">Save List</button></td>
-                            <td class="col-xs-3"><button name="compare_button" type="submit" class="btn btn-success" name="items-save-button">Compare Prices!</button></td>
+                            <td class="col-xs-2" colspan="2">
+                                <button id="save_button" name="save_button" type="submit" class="btn btn-primary"
+                                                                     value="{{$user}}" @if($user == 0) data-toggle="modal" data-target=".login-modal"@endif>Save List</button>
+                            </td>
+                            <td class="col-xs-3">
+                                <button id="comp_button" name="compare_button" type="submit" class="btn btn-success"
+                                                         value="{{$user}}" @if($user == 0) data-toggle="modal" data-target=".login-modal"@endif>Compare Prices!</button>
+                            </td>
                         </tr>
                     </tbody>
 
@@ -85,6 +97,22 @@
 @section('scripts')
     <script>
         $(document).ready(function() {
+
+            if($('#save_button').val() == 0){
+                $('#item_form').submit(function(e){
+                    e.preventDefault();
+                    return false;
+                });
+                $('#save_button').removeAttr('type');
+            }
+
+            window.setTimeout(function () {
+                $(".alert-message").fadeTo(500, 0).slideUp(500, function () {
+                    $(this).remove();
+                });
+            }, 2000);
+
+
             var max_fields      = 100; //maximum input boxes allowed
             var wrapper         = $("#my_tbody"); //Fields wrapper
             var add_button      = $(".add_field_button"); //Add button ID

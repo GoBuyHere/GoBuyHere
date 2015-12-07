@@ -26,4 +26,15 @@ class RecentList extends Model
 		return $this->hasMany('App\RecentListItem');
 	}
 
+	public function totalPrice(){
+		$rItems = $this->recentListItems;
+		$total = 0;
+		foreach($rItems as $rItem){
+			$total += $rItem->item->price * $rItem->qty;
+		}
+
+		return '$' . strVal(number_format($total  / 100,2));
+
+	}
+
 }
