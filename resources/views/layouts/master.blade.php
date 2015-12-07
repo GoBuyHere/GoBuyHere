@@ -157,7 +157,8 @@
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-        {!!    HTML::script('resources/assets/js/bootstrap.min.js') !!}
+        {!! HTML::script('resources/assets/js/bootstrap.min.js') !!}
+        {!! HTML::script('resources/assets/js/jquery.validate.min.js') !!}
 
         @yield('scripts')
 
