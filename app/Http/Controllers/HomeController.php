@@ -25,7 +25,7 @@ class HomeController extends Controller
 
 
     public function redirect(){
-        return Redirect::route('');
+        return Redirect::route('shopping');
     }
 
 	
