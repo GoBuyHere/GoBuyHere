@@ -109,7 +109,7 @@
                             <div class="col-xs-6">
                                 <div class="well">
 
-                                    <form id="loginForm" method="POST" action="/auth/login">
+                                    <form id="loginForm" method="POST" action="{{URL::to('auth/login') }}">
                                         {!! csrf_field() !!}
 
                                         <div class="form-group">
@@ -143,7 +143,7 @@
                                     <li><span class="fa fa-check text-success"></span> Contribute to price tracking</li>
                                     <li><span class="fa fa-check text-success"></span> Be Awesome</li>
                                 </ul>
-                                <p><a href="auth/register" class="btn btn-info btn-block">Yes please, register now!</a></p>
+                                <p><a href="{{URL::to('auth/register') }}" class="btn btn-info btn-block">Yes please, register now!</a></p>
                             </div>
                         </div>
                     </div>
